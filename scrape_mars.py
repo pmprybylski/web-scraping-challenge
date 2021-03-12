@@ -64,7 +64,7 @@ def scrape():
     mars_facts.set_index('Description', inplace=True)
 
     # Convert table to html
-    mars_facts_table = [mars_facts.to_html()]
+    mars_facts_table = mars_facts.to_html(classes='data', titles=mars_facts.columns.values)
 
     # --- Mars Hemispheres ---
     browser.visit('https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars')

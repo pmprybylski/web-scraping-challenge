@@ -18,10 +18,10 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-                <ul>
+            <div class="collapse navbar-collapse " id="navbarNavDropdown">
+                <ul class='navbar-nav'>
                     <li class="nav-item">
-                        <button type="button" class="btn btn-dark" href='/scrape'>Scrape</button>
+                        <a class="nav-link" href="/scrape">Refresh Data</a>
                     </li>
                 </ul>
             </div>
@@ -43,6 +43,8 @@
             <!-- Featured Image -->
             <div class='col-md-7'>
                 <br><br>
+                <h2>Featured Image</h2>
+                <hr>
                 <img src='{{ mars.featured_image }}' class="img-fluid" alt="Featured Image">
             </div>
             
@@ -61,17 +63,6 @@
 
         <div class='row'>
 
-            <!-- Mars Facts -->
-            <div class='col-md-5'>
-                <br><br>
-                <h2>Mars Facts</h2>
-                <hr>
-                <p>{{ mars.mars_facts }}</p>
-            </div>
-
-            <!-- Break -->
-            <div class='col-md-1'></div>
-
             <!-- Mars Hemispheres -->
             <div class='col-md-6'>
                 <br><br>
@@ -81,11 +72,23 @@
                 <div class="card" style="width: 18rem;">
                     <img src="{{ dict.img_url }}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">'{{ dict.title }}'</h5>
-                        <a href="#" class="btn btn-dark">{{ dict.img_url}}</a>
+                        <a href="{{ dict.img_url}}" class="btn btn-dark">{{ dict.title }}</a>
                     </div>
                 </div>
             {% endfor %}
+            </div>            
+
+            <!-- Break -->
+            <div class='col-md-1'></div>
+
+            <!-- Mars Facts -->
+            <div class='col-md-5'>
+                <br><br>
+                <h2>Mars Facts</h2>
+                <hr> 
+                <table class='table' >
+                    {{ mars.mars_facts }}
+                </table>
             </div>
         </div>
     </div>
