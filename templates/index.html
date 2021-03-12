@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <title>Mars Data</title>
+</head>
+<body>
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Mars Data</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                <ul>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-dark" href='/scrape'>Scrape</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Header -->
+    <div class='container'>
+        <div class='row'>
+            <div class='col-md-12'>
+                <br><br>
+                <h1>Mission to Mars</h1>
+                <hr>
+            </div>
+        </div>
+
+        <div class='row'>
+            
+            <!-- Featured Image -->
+            <div class='col-md-7'>
+                <br><br>
+                <img src='{{ mars_data.featured_image }}' class="img-fluid" alt="Featured Image">
+            </div>
+            
+            <!-- Break -->
+            <div class='col-md-1'></div>
+            
+            <!-- Mars News -->
+            <div class='col-md-4'>
+                <br><br>
+                <h2>Latest Mars News</h2>
+                <hr>
+                <h3>{{ mars_data.news_title }}</h3>
+                <p>{{ mars_data.news_paragraph</p>
+            </div>
+        </div>
+
+        <div class='row'>
+
+            <!-- Mars Facts -->
+            <div class='col-md-5'>
+                <br><br>
+                <h2>Mars Facts</h2>
+                <hr>
+                <p>{{ mars_data.mars_facts }}</p>
+            </div>
+
+            <!-- Break -->
+            <div class='col-md-1'></div>
+
+            <!-- Mars Hemispheres -->
+            <div class='col-md-6'>
+                <br><br>
+                <h2>Mars's Hemispheres</h2>
+                <hr>
+            {% for dict in mars_data.hemispheres %}
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ dict.img_url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">'{{ dict.title }}'</h5>
+                        <a href="#" class="btn btn-dark">{{ dict.img_url}}</a>
+                    </div>
+                </div>
+            {% end for %}
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

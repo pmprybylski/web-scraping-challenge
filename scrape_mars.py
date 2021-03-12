@@ -129,7 +129,6 @@ def scrape():
         'mars_facts': mars_facts_table,
         'hemispheres': hemisphere_image_urls
     }
-
     # Close browser after scraping
     browser.quit()
 
