@@ -43,7 +43,7 @@
             <!-- Featured Image -->
             <div class='col-md-7'>
                 <br><br>
-                <img src='{{ mars_data.featured_image }}' class="img-fluid" alt="Featured Image">
+                <img src='{{ mars.featured_image }}' class="img-fluid" alt="Featured Image">
             </div>
             
             <!-- Break -->
@@ -54,8 +54,8 @@
                 <br><br>
                 <h2>Latest Mars News</h2>
                 <hr>
-                <h3>{{ mars_data.news_title }}</h3>
-                <p>{{ mars_data.news_paragraph</p>
+                <h3>{{ mars.news_title }}</h3>
+                <p>{{ mars.news_paragraph }}</p>
             </div>
         </div>
 
@@ -66,7 +66,7 @@
                 <br><br>
                 <h2>Mars Facts</h2>
                 <hr>
-                <p>{{ mars_data.mars_facts }}</p>
+                <p>{{ mars.mars_facts }}</p>
             </div>
 
             <!-- Break -->
@@ -77,7 +77,7 @@
                 <br><br>
                 <h2>Mars's Hemispheres</h2>
                 <hr>
-            {% for dict in mars_data.hemispheres %}
+            {% for dict in mars.hemispheres %}
                 <div class="card" style="width: 18rem;">
                     <img src="{{ dict.img_url }}" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -85,7 +85,7 @@
                         <a href="#" class="btn btn-dark">{{ dict.img_url}}</a>
                     </div>
                 </div>
-            {% end for %}
+            {% endfor %}
             </div>
         </div>
     </div>

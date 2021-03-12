@@ -4,11 +4,11 @@ from splinter import Browser
 from bs4 import BeautifulSoup as bs
 import time
 import pandas as pd
-from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 def init_browser():
-    executable_path = {'executable_path': 'chromedriver'}
+    executable_path = {'executable_path': ChromeDriverManager().install()}
     return Browser('chrome', **executable_path, headless=False)
 
 def scrape():
@@ -23,12 +23,15 @@ def scrape():
     soup = bs(html, "html.parser")
 
     # Search for news titles and teaser paragraphs
+   
     results = soup.find_all('ul', class_='item_list')
-    
-    for result in results:
-        title = result.find_all('div', class_='content-title')
-        paragraph = result.find_all('div', class_='article_teaser_body')
 
+    # Loop through results
+    for result in results:
+    
+        title = result.find_all('div', class_='content_title')
+        paragraph = result.find_all('div', class_='article_teaser_body')
+    
         # Extract the first title and paragraph, and assign to variables
         news_title = title[0].text
         news_paragraph = paragraph[0].text
@@ -61,10 +64,11 @@ def scrape():
     mars_facts.set_index('Description', inplace=True)
 
     # Convert table to html
-    mars_facts_table = [mars_facts.to_html(classes='data table table-borderless', index=False, header=False, border=0)]
+    mars_facts_table = [mars_facts.to_html()]
 
     # --- Mars Hemispheres ---
     browser.visit('https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars')
+    time.sleep(1)
 
     # Scrape page into Soup
     html = browser.html
@@ -124,7 +128,7 @@ def scrape():
         hemisphere_image_urls.append(mars_hemi_dict)
     
     # Store data in a dictionary
-    mars_data = {
+    mars_info = {
         'news_title': news_title,
         'news_paragraph': news_paragraph,
         'featured_image': featured_image_url,
@@ -135,8 +139,4 @@ def scrape():
     browser.quit()
 
     # Return results
-    return mars_data
-    
-
-
-
+    return mars_info
