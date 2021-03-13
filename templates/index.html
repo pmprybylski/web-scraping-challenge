@@ -86,9 +86,7 @@
                 <br><br>
                 <h2>Mars Facts</h2>
                 <hr> 
-                <table class='table' >
-                    {{ mars.mars_facts }}
-                </table>
+                <table class='table table-light' {{ mars.mars_facts|safe }} ></table>
             </div>
         </div>
     </div>
